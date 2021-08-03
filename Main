@@ -1,0 +1,23 @@
+using System;
+using Microsoft.Win32;
+
+namespace USBFConsoleApp
+{
+    class Program
+    {
+
+        static void Main()
+                {
+            RegistryKey LM = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Enum\USB", true);
+            string keyName = @"SYSTEM\CurrentControlSet\Enum\USB";
+            String[] names = LM.GetSubKeyNames();
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyName, false))
+                foreach (String s in names)
+                {
+                    if (s.Contains("VID"))
+                        key.DeleteSubKeyTree(s, false);
+                    else continue;
+                }
+        }
+    }
+}
