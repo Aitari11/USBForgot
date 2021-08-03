@@ -11,7 +11,7 @@ namespace USBFConsoleApp
             RegistryKey LM = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Enum\USB", true);
             string keyName = @"SYSTEM\CurrentControlSet\Enum\USB";
             String[] names = LM.GetSubKeyNames();
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyName, false))
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyName, true))
                 foreach (String s in names)
                 {
                     if (s.Contains("VID"))
